@@ -1,6 +1,9 @@
+#!/usr/bin/python3
+#Script will ask about VM name, ram, disk size and etc
 
 
 class create:
+
     def __init__(self):
         self.name=""
         self.ram=1024
