@@ -1,3 +1,0 @@
-cd install_libvirt
-chmod +x libvirt.sh
-./libvirt.sh
