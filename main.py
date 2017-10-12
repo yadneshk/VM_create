@@ -16,44 +16,35 @@ class create:
         print("Prerequisite Check \n donex")
 
     def get_name(self):
-        name=input("Enter name of VM: ")
-        return name
+        self.name=input("Enter name of VM: ")
+        return self.name
 
     def get_ram(self):
-        ram=input("Enter RAM size(MiB): ")
-        return ram
+        return(input("Enter RAM size(MiB): "))
 
     def get_cpus(self):
-        cpus=input("Enter number of vcpus: ")
-        return cpus
+        return(input("Enter number of vcpus: "))
 
     def get_size(self):
-        size=input("Enter size you want to allocate to VM(GiB): ")
-        return size
+        return(input("Enter size you want to allocate to VM(GiB): "))
 
     def get_ksfile(self):
-        ksfile=input("Enter the path of kickstart config file in your server: ")
-        return ksfile
+        return(input("Enter the path of kickstart config file in your server: "))
 
     def get_ksdevice(self):
-        ksdevice=input("Enter the network interface to be used during installation: ")
-        return ksdevice
+        return(input("Enter the network interface to be used during installation: "))
 
     def get_ipaddress(self):
-        ipaddress=input("Enter the ipaddress to be assigned to operating system: ")
-        return ipaddress
+        return(input("Enter the ipaddress to be assigned to operating system: "))
 
     def get_netmask(self):
-        netmask=input("Enter the subnet mask to be assigned to operating system: ")
-        return netmask
+        return(input("Enter the subnet mask to be assigned to operating system: "))
 
     def get_gateway(self):
-        gateway=input("Enter the gateway to be assigned to operating system: ")
-        return gateway
+        return(input("Enter the gateway to be assigned to operating system: "))
 
     def get_dns(self):
-        dns=input("Enter the dns to be assigned to operating system: ")
-        return dns
+        return(input("Enter the dns to be assigned to operating system: "))
 
     def final(self):
         #os.system('ls')
@@ -61,7 +52,7 @@ class create:
                 +" --name "+self.get_name()
                 +" --ram "+self.get_ram()
                 +" --vcpus "+self.get_cpus()
-                +" --disk path="+self.disk_path+".qcow2,bus="+self.bus+",size="+self.get_size()
+                +" --disk path="+self.disk_path+self.name+".qcow2,bus="+self.bus+",size="+self.get_size()
                 +" --location "+self.location
                 +" --extra-args="
                 +"'ks="+self.get_ksfile()
@@ -72,7 +63,7 @@ class create:
                 +" dns="+self.get_dns()
                 +"' --network bridge:"+self.net_adp)
         print(self.finalcmd)
-        #os.system(self.finalcmd)
+        os.system(self.finalcmd)
 
 if __name__ == '__main__':
     vm = create()
