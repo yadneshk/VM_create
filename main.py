@@ -17,64 +17,64 @@ class create:
         #os.system('ls')
 
     def get_name(self):
-        self.name=input("Enter name of VM: ")
+        name=input("Enter name of VM: ")
+        return name
 
     def get_ram(self):
-        self.ram=int(input("Enter RAM size(MB): "))
+        ram=input("Enter RAM size(MiB): ")
+        return ram
 
     def get_cpus(self):
-        self.cpus=int(input("Enter number of vcpus: "))
+        cpus=input("Enter number of vcpus: ")
+        return cpus
 
     def get_size(self):
-        self.size=int(input("Enter size you want to allocate to VM(GiB): "))
+        size=input("Enter size you want to allocate to VM(GiB): ")
+        return size
 
     def get_ksfile(self):
-        self.ksfile=input("Enter the path of kickstart config file in your server: ")
+        ksfile=input("Enter the path of kickstart config file in your server: ")
+        return ksfile
 
     def get_ksdevice(self):
-        self.ksdevice=input("Enter the network interface to be used during installation: ")
+        ksdevice=input("Enter the network interface to be used during installation: ")
+        return ksdevice
 
     def get_ipaddress(self):
-        self.ipaddress=input("Enter the ipaddress to be assigned to operating system: ")
+        ipaddress=input("Enter the ipaddress to be assigned to operating system: ")
+        return ipaddress
 
     def get_netmask(self):
-        self.netmask=input("Enter the subnet mask to be assigned to operating system: ")
+        netmask=input("Enter the subnet mask to be assigned to operating system: ")
+        return netmask
 
     def get_gateway(self):
-        self.gateway=input("Enter the gateway to be assigned to operating system: ")
+        gateway=input("Enter the gateway to be assigned to operating system: ")
+        return gateway
 
     def get_dns(self):
-        self.dns=input("Enter the dns to be assigned to operating system: ")
+        dns=input("Enter the dns to be assigned to operating system: ")
+        return dns
 
     def final(self):
         #os.system('ls')
         self.finalcmd=str("virt-install "
-                +"--name "+self.name
-                +"--ram "+str(self.ram)
-                +" --vcpus "+str(self.cpus)
-                +" --disk path="+self.disk_path+self.name+".qcow2,bus="+self.bus+",size="+str(self.size)
+                +" --name "+self.get_name()
+                +" --ram "+self.get_ram()
+                +" --vcpus "+self.get_cpus()
+                +" --disk path="+self.disk_path+".qcow2,bus="+self.bus+",size="+self.get_size()
                 +" --location "+self.location
                 +" --extra-args="
-                +"'ks="+str(self.ksfile)
-                +" ksdevice="+str(self.ksdevice)
-                +" ip="+str(self.ipaddress)
-                +" netmask="+str(self.netmask)
-                +" gateway="+str(self.gateway)
-                +" dns="+str(self.dns)
-                +"' --network bridge:"+str(self.net_adp))
+                +"'ks="+self.get_ksfile()
+                +" ksdevice="+self.get_ksdevice()
+                +" ip="+self.get_ipaddress()
+                +" netmask="+self.get_netmask()
+                +" gateway="+self.get_gateway()
+                +" dns="+self.get_dns()
+                +"' --network bridge:"+self.net_adp)
         print(self.finalcmd)
-        #os.system(self.finalcmd)
+        os.system(self.finalcmd)
 
 if __name__ == '__main__':
     vm = create()
-    vm.get_name()
-    vm.get_ram()
-    vm.get_cpus()
-    vm.get_size()
-    vm.get_ksfile()
-    vm.get_ksdevice()
-    vm.get_ipaddress()
-    vm.get_netmask()
-    vm.get_gateway()
-    vm.get_dns()
     vm.final()
