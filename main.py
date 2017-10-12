@@ -6,11 +6,7 @@ class create:
 
     def __init__(self):
         self.check_packages()
-        self.name=""
-        self.ram=1024
-        self.cpus=1
         self.disk_path="/var/lib/libvirt/images/"
-        self.size=10
         self.bus="virtio"
         self.location="http://172.22.26.203/repos/fedora25/"
         self.net_adp="virbr0"
