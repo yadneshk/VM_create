@@ -32,11 +32,42 @@ class create:
     def get_size(self):
         self.size=int(input("Enter size you want to allocate to VM(GiB): "))
 
+    def get_ksfile(self):
+        self.ksfile=input("Enter the path of kickstart config file in your server: ")
+
+    def get_ksdevice(self):
+        self.ksdevice=input("Enter the network interface to be used during installation: ")
+
+    def get_ipaddress(self):
+        self.ipaddress=input("Enter the ipaddress to be assigned to operating system: ")
+
+    def get_netmask(self):
+        self.netmask=input("Enter the subnet mask to be assigned to operating system: ")
+
+    def get_gateway(self):
+        self.gateway=input("Enter the gateway to be assigned to operating system: ")
+
+    def get_dns(self):
+        self.dns=input("Enter the dns to be assigned to operating system: ")
+
     def final(self):
         #os.system('ls')
-        self.finalcmd=str("virt-install --name "+self.name+" --ram "+str(self.ram)+" --vcpus "+str(self.cpus)+" --disk path="+self.disk_path+self.name+".qcow2,bus="+self.bus+",size="+str(self.size)+" --location "+self .location+" --network bridge:"+str(self.net_adp))
+        self.finalcmd=str("virt-install "
+                +"--name "+self.name
+                +"--ram "+str(self.ram)
+                +" --vcpus "+str(self.cpus)
+                +" --disk path="+self.disk_path+self.name+".qcow2,bus="+self.bus+",size="+str(self.size)
+                +" --location "+self.location
+                +" --extra-args="
+                +"'ks="+str(self.ksfile)
+                +" ksdevice="+str(self.ksdevice)
+                +" ip="+str(self.ipaddress)
+                +" netmask="+str(self.netmask)
+                +" gateway="+str(self.gateway)
+                +" dns="+str(self.dns)
+                +"' --network bridge:"+str(self.net_adp))
         print(self.finalcmd)
-        os.system(self.finalcmd)
+        #os.system(self.finalcmd)
 
 if __name__ == '__main__':
     vm = create()
@@ -44,4 +75,10 @@ if __name__ == '__main__':
     vm.get_ram()
     vm.get_cpus()
     vm.get_size()
+    vm.get_ksfile()
+    vm.get_ksdevice()
+    vm.get_ipaddress()
+    vm.get_netmask()
+    vm.get_gateway()
+    vm.get_dns()
     vm.final()
