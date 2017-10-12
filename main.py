@@ -5,6 +5,7 @@ import os
 class create:
 
     def __init__(self):
+        self.check_packages()
         self.name=""
         self.ram=1024
         self.cpus=1
@@ -13,6 +14,11 @@ class create:
         self.bus="virtio"
         self.location="http://172.22.26.203/repos/fedora25/"
         self.net_adp="virbr0"
+
+    def check_packages(self):
+        os.system("sshpass -p minisat ssh root@172.22.26.201 < test")
+        print("Prerequisite Check \n donex")
+        #os.system('ls')
 
     def get_name(self):
         self.name=input("Enter name of VM: ")
@@ -33,9 +39,9 @@ class create:
         os.system(self.finalcmd)
 
 if __name__ == '__main__':
-    a = create()
-    a.get_name()
-    a.get_ram()
-    a.get_cpus()
-    a.get_size()
-    a.final()
+    vm = create()
+    vm.get_name()
+    vm.get_ram()
+    vm.get_cpus()
+    vm.get_size()
+    vm.final()
