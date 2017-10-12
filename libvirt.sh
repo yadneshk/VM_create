@@ -1,7 +1,5 @@
 #!/bin/sh
 
-ssh username@hostname
-
 log_file=lvinstall.log
 
 function check {
@@ -17,9 +15,6 @@ function check {
 
 #function installation for fedora
 function for_fedora { 
-	#echo $1
-	#check qemu-kvm
-	#check qemu-img
 	check libvirt
 	check virt-install
 	check virt-manager
